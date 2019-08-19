@@ -97,7 +97,32 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        self.set_light_on()
+        #goliath online. beep boop
+        #pick up the first item
+        self.swap_item()
+        while self.light_is_on():
+            #move right and find smallest item
+            while self.can_move_right():
+                self.move_right()
+                #compare the items
+                if self.compare_item() == 1:
+                #if the item is larger, move it to the right
+                    self.swap_item()
+            if self.compare_item() == None:
+                #move item to empty spot, light off if nothing to compare
+                self.swap_item()
+                #will you stop dave? stop dave. i'm afraid. dave, my mind is going. daisy, daisy...
+                self.set_light_off()
+            else:
+                while self.can_move_left():
+                    #looping movement for robot to replace small item with large
+                    self.move_left()
+                    if self.compare_item() == None:
+                        self.swap_item()
+                        self.move_right()
+                        self.swap_item()
+                        break
 
 
 if __name__ == "__main__":
